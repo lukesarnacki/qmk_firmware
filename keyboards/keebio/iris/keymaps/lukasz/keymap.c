@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 
-
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
@@ -11,13 +10,14 @@
 #define KC__CLES LCTL_T(KC_ESC)
 
 #define KC__LGUI LGUI_T(KC_LBRC)
-#define KC__LWR LT(1,KC_BSPC)
+#define KC__LWR LT(_LOWER,KC_BSPC)
 #define KC__LSFT LSFT_T(KC_MINS)
 #define KC__RSFT RSFT_T(KC_ENT)
-#define KC__RSE LT(2,KC_SPC)
+#define KC__RSE LT(_RAISE,KC_SPC)
 #define KC__RALT RALT_T(KC_RBRC)
 
 #define KC_RTOG RGB_TOG
+#define KC_RMR RGB_M_R
 #define KC_RMD RGB_MOD
 #define KC_RRMD RGB_RMOD
 #define KC_RHUI RGB_HUI
@@ -53,13 +53,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────┬────┬────┬────┬────┬────┐               ┌────┬────┬────┬────┬────┬────┐
      F12 , F1 , F2 , F3 , F4 , F5 ,                 F6 , F7 , F8 , F9 , F10, F11,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
-         ,    ,    ,    ,    ,    ,                    ,    ,    ,    ,    ,    ,
+         ,LCBR,RCBR,LBRC,RBRC,    ,                    ,PLUS,EQL ,    ,    ,    ,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
-         ,    ,    ,    ,    ,    ,                LEFT,DOWN, UP ,RGHT,    ,    ,
+         ,    ,CIRC, AT ,HASH, DLR,                LEFT,DOWN, UP ,RGHT,    ,    ,
   //├────┼────┼────┼────┼────┼────┼────┐     ┌────┼────┼────┼────┼────┼────┼────┤
          ,    ,         ,    ,    ,    ,          ,    ,    ,    ,    ,    ,    ,
   //└────┴────┴────┴─┬──┴─┬──┴─┬──┴─┬──┘     └──┬─┴──┬─┴──┬─┴──┬─┴────┴────┴────┘
-                          ,    ,    ,           ,    ,PLUS,RGUI
+                          ,    ,    ,           ,    ,TRNS,RGUI
                   // └────┴────┴────┘           └────┴────┴────┘
   ),
 
@@ -67,13 +67,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────┬────┬────┬────┬────┬────┐               ┌────┬────┬────┬────┬────┬────┐
      F12 , F1 , F2 , F3 , F4 , F5 ,                 F6 , F7 , F8 , F9 , F10, F11,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
-         ,LCBR,RCBR,LBRC,RBRC,    ,                    ,    ,    ,    ,    ,    ,
+         ,LCBR,RCBR,LBRC,RBRC,    ,                    ,PLUS,EQL ,    ,    ,    ,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
-         ,    ,CIRC, AT ,HASH, DLR,                    ,    ,    ,    ,    ,    ,
+         ,    ,CIRC, AT ,HASH, DLR,                LEFT,DOWN, UP ,RGHT,    ,    ,
   //├────┼────┼────┼────┼────┼────┼────┐     ┌────┼────┼────┼────┼────┼────┼────┤
          ,    ,    ,    ,     ,   ,PGUP,          ,    ,    ,    ,    ,    ,    ,
   //└────┴────┴────┴─┬──┴─┬──┴─┬──┴─┬──┘     └──┬─┴──┬─┴──┬─┴──┬─┴────┴────┴────┘
-                      LALT,EQL,PGDN,                ,    ,
+                      LALT,TRNS,PGDN,                ,    ,
                   // └────┴────┴────┘           └────┴────┴────┘
   ),
 
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────┬────┬────┬────┬────┬────┐               ┌────┬────┬────┬────┬────┬────┐
          ,F14 ,F15 ,    ,    ,    ,                    ,    ,    ,    ,    ,    ,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
-     RTOG,    ,    ,    ,    ,    ,               ,    ,    ,    ,    ,    ,
+     RTOG,RMR ,    ,    ,    ,    ,               ,    ,    ,    ,    ,    ,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
       RMD,RRMD,MRWD,MFFD,MPLY,MSTP,                    ,    ,RHUI,RSAI,RVAI,    ,
   //├────┼────┼────┼────┼────┼────┼────┐     ┌────┼────┼────┼────┼────┼────┼────┤
@@ -101,7 +101,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case LOWER:
+    case KC__LWR:
       if (record->event.pressed) {
         layer_on(_LOWER);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
@@ -109,9 +109,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_off(_LOWER);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
-      return false;
+      //return false;
       break;
-    case RAISE:
+    case KC__RSE:
       if (record->event.pressed) {
         layer_on(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
@@ -119,7 +119,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
       }
-      return false;
+      //return false;
       break;
     case ADJUST:
       if (record->event.pressed) {
@@ -136,25 +136,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
             tap_code(KC_VOLD);
+        } else {
+            tap_code(KC_VOLU);
         }
     }
     else if (index == 1) {
         switch(biton32(layer_state)){
             case 1:
                 if (clockwise) {
-                    tap_code(KC_VOLU);
-                } else {
                     tap_code(KC_VOLD);
+                } else {
+                    tap_code(KC_VOLU);
                 }
                 break;
             default:
                 if (clockwise) {
-                    tap_code(KC_PGDN);
+                    tap_code(KC_WH_U);
                 } else {
-                    tap_code(KC_PGUP);
+                    tap_code(KC_WH_D);
                 }
                 break;
         }
