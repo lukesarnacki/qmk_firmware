@@ -74,6 +74,14 @@
 #    define RAPC_KEYS KC_RALT, KC_RSFT, KC_0
 #endif
 
+// GUI / paren setup
+#ifndef LGPO_KEYS
+#    define LGPO_KEYS KC_LGUI, KC_LSFT, KC_9
+#endif
+#ifndef RGPC_KEYS
+#    define RGPC_KEYS KC_RGUI, KC_RSFT, KC_0
+#endif
+
 // Shift / Enter setup
 #ifndef SFTENT_KEYS
 #    define SFTENT_KEYS KC_RSFT, KC_TRNS, SFTENT_KEY
@@ -147,6 +155,14 @@ bool process_space_cadet(uint16_t keycode, keyrecord_t *record) {
         }
         case KC_RAPC: {
             perform_space_cadet(record, RAPC_KEYS);
+            return false;
+        }
+        case KC_LGPO: {
+            perform_space_cadet(record, LGPO_KEYS);
+            return false;
+        }
+        case KC_RGPC: {
+            perform_space_cadet(record, RGPC_KEYS);
             return false;
         }
         case KC_SFTENT: {

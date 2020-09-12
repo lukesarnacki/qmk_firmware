@@ -23,6 +23,8 @@
 |`KC_RCPC`      |           |Right Control when held, `)` when tapped                             |
 |`KC_LAPO`      |           |Left Alt when held, `(` when tapped                                  |
 |`KC_RAPC`      |           |Right Alt when held, `)` when tapped                                 |
+|`KC_LGPO`      |           |Left GUI when held, `(` when tapped                                  |
+|`KC_RGPC`      |           |Right GUI when held, `)` when tapped                                 |
 |`KC_SFTENT`    |           |Right Shift when held, Enter when tapped                             |
 |`KC_LEAD`      |           |The [Leader key](feature_leader_key.md)                              |
 |`KC_LOCK`      |           |The [Lock key](feature_key_lock.md)                                  |

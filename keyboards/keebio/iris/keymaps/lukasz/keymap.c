@@ -9,12 +9,12 @@
 
 #define KC__CLES LCTL_T(KC_ESC)
 
-#define KC__LGUI LGUI_T(KC_LBRC)
+#define KC__LGUI LGUI_T(KC_LPRN)
 #define KC__LWR LT(_LOWER,KC_BSPC)
-#define KC__LSFT LSFT_T(KC_MINS)
+//#define KC__LSFT LSFT_T(KC_MINS)
 #define KC__RSFT RSFT_T(KC_ENT)
 #define KC__RSE LT(_RAISE,KC_SPC)
-#define KC__RALT RALT_T(KC_RBRC)
+#define KC__RALT RALT_T(KC_RPRN)
 
 #define KC_RTOG RGB_TOG
 #define KC_RMR RGB_M_R
@@ -26,12 +26,14 @@
 #define KC_RSAD RGB_SAD
 #define KC_RVAI RGB_VAI
 #define KC_RVAD RGB_VAD
+#define KC_GUI_PRN GUI_PRN
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
   RAISE,
   ADJUST,
+  GUI_PRN
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -43,9 +45,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
      _CLES,A  , S  , D  , F  , G  ,                H,   J   , K  , L  ,SCLN,QUOT,
   //├────┼────┼────┼────┼────┼────┼────┐     ┌────┼────┼────┼────┼────┼────┼────┤
-     LSPO, Z  , X  , C  , V  , B  , GRV,      MENU, N  , M  ,COMM, DOT,SLSH,RSPC,
+     LSFT, Z  , X  , C  , V  , B  ,LOCK,      BTN2, N  , M  ,COMM, DOT,SLSH,RSFT,
   //└────┴────┴────┴─┬──┴─┬──┴─┬──┴─┬──┘     └──┬─┴──┬─┴──┬─┴──┬─┴────┴────┴────┘
-                     _LGUI,_LWR,_LSFT,          _RSFT,_RSE,_RALT
+                      LGPO,_LWR,LSFT,           SFTENT,_RSE,RAPC
                   // └────┴────┴────┘           └────┴────┴────┘
   ),
 
@@ -53,13 +55,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────┬────┬────┬────┬────┬────┐               ┌────┬────┬────┬────┬────┬────┐
      F12 , F1 , F2 , F3 , F4 , F5 ,                 F6 , F7 , F8 , F9 , F10, F11,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
-         ,LCBR,RCBR,LBRC,RBRC,    ,                    ,PLUS,EQL ,    ,    ,    ,
+         ,EXLM,AT  ,HASH,DLR ,PERC,                CIRC,LBRC,RBRC,LCBR,RCBR,    ,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
-         ,    ,CIRC, AT ,HASH, DLR,                LEFT,DOWN, UP ,RGHT,    ,    ,
+         ,EQL ,CIRC,MINS,UNDS, DLR,                LEFT,DOWN, UP ,RGHT,PLUS,    ,
   //├────┼────┼────┼────┼────┼────┼────┐     ┌────┼────┼────┼────┼────┼────┼────┤
-         ,    ,         ,    ,    ,    ,          ,    ,    ,    ,    ,    ,    ,
+         ,GRV ,TILD,    ,    ,    ,PGUP,      BTN2,    ,    ,    ,    ,    ,    ,
   //└────┴────┴────┴─┬──┴─┬──┴─┬──┴─┬──┘     └──┬─┴──┬─┴──┬─┴──┬─┴────┴────┴────┘
-                          ,    ,    ,           ,    ,TRNS,RGUI
+                          ,    ,PGDN,                ,TRNS,
                   // └────┴────┴────┘           └────┴────┴────┘
   ),
 
@@ -67,13 +69,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────┬────┬────┬────┬────┬────┐               ┌────┬────┬────┬────┬────┬────┐
      F12 , F1 , F2 , F3 , F4 , F5 ,                 F6 , F7 , F8 , F9 , F10, F11,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
-         ,LCBR,RCBR,LBRC,RBRC,    ,                    ,PLUS,EQL ,    ,    ,    ,
+         ,EXLM,AT  ,HASH,DLR ,PERC,                CIRC,LBRC,RBRC,LCBR,RCBR,    ,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
-         ,    ,CIRC, AT ,HASH, DLR,                LEFT,DOWN, UP ,RGHT,    ,    ,
+         ,EQL ,CIRC,MINS,UNDS, DLR,                LEFT,DOWN, UP ,RGHT,PLUS,    ,
   //├────┼────┼────┼────┼────┼────┼────┐     ┌────┼────┼────┼────┼────┼────┼────┤
-         ,    ,    ,    ,     ,   ,PGUP,          ,    ,    ,    ,    ,    ,    ,
+         ,GRV ,TILD,    ,    ,    ,PGUP,      BTN2,    ,    ,    ,    ,    ,    ,
   //└────┴────┴────┴─┬──┴─┬──┴─┬──┴─┬──┘     └──┬─┴──┬─┴──┬─┴──┬─┴────┴────┴────┘
-                      LALT,TRNS,PGDN,                ,    ,
+                          ,TRNS,PGDN,                ,    ,
                   // └────┴────┴────┘           └────┴────┴────┘
   ),
 
@@ -82,11 +84,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────┬────┬────┬────┬────┬────┐               ┌────┬────┬────┬────┬────┬────┐
          ,F14 ,F15 ,    ,    ,    ,                    ,    ,    ,    ,    ,    ,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
-     RTOG,RMR ,    ,    ,    ,    ,               ,    ,    ,    ,    ,    ,
+     RTOG,RMR ,    ,    ,    ,    ,                    ,BTN1,MS_U,BTN2,    ,    ,
   //├────┼────┼────┼────┼────┼────┤               ├────┼────┼────┼────┼────┼────┤
-      RMD,RRMD,MRWD,MFFD,MPLY,MSTP,                    ,    ,RHUI,RSAI,RVAI,    ,
+      RMD,RRMD,MRWD,MFFD,MPLY,MSTP,                    ,MS_L,MS_D,MS_R,    ,    ,
   //├────┼────┼────┼────┼────┼────┼────┐     ┌────┼────┼────┼────┼────┼────┼────┤
-         ,    ,    ,    ,     ,   ,    ,          ,    ,MUTE,RHUD,RSAD,RVAD,    ,
+         ,    ,    ,    ,     ,   ,    ,          ,    ,MUTE,RHUI,RSAI,RVAI,    ,
   //└────┴────┴────┴─┬──┴─┬──┴─┬──┴─┬──┘     └──┬─┴──┬─┴──┬─┴──┬─┴────┴────┴────┘
                           ,    ,    ,                ,    ,
                   // └────┴────┴────┘           └────┴────┴────┘
@@ -94,6 +96,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  //static uint16_t guiprn_timer;
+
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
@@ -111,6 +115,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       //return false;
       break;
+
     case KC__RSE:
       if (record->event.pressed) {
         layer_on(_RAISE);
@@ -129,7 +134,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
+    /* case GUI_PRN: */
+    /*   if (record->event.pressed) { */
+    /*     guiprn_timer = timer_read(); */
+    /*     register_code (KC_LGUI); */
+    /*   } else { */
+    /*     if (timer_elapsed (guiprn_timer) < TAPPING_TERM) { */
+    /*       register_code (LSFT(KC_0)); */
+    /*       unregister_code (LSFT(KC_0)); */
+    /*     } */
+    /*     unregister_code (KC_LGUI); */
+    /*   } */
+    /*   break; */
   }
+
   return true;
 }
 

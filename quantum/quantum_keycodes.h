@@ -512,6 +512,12 @@ enum quantum_keycodes {
     DYN_MACRO_PLAY1,
     DYN_MACRO_PLAY2,
 
+    // Left GUI, open paren
+    KC_LGPO,
+
+    // Right GUI, close paren
+    KC_RGPC,
+
     // always leave at the end
     SAFE_RANGE
 };
